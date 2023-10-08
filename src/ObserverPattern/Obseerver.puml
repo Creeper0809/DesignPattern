@@ -1,0 +1,30 @@
+@startuml
+class EventManager {
+- {static} HashMap<Object,List<IEventListener>> subscribersList
++ {static} void addListener(Object,IEventListener<EventType>)
++ {static} void removeListener(Object,IEventListener<EventType>)
++ {static} void triggerEvent(EventType,EventManager.EventType)
+- {static} boolean subscriptionExists(Object,IEventListener)
+}
+interface IEventListener {
+~ void OnEvent(T)
+}
+class Subject {
++ Event e
++ {static} void trigger(Event)
++ void trigger()
+}
+class Observer {
++ void OnEvent(Subject)
++ void onDead()
+}
+class Observer2 {
++ void register(Subject)
++ void deregister(Subject)
++ void OnEvent(Subject)
+}
+EventManager  -left-> "*"IEventListener
+IEventListener <|.. Observer
+Subject -left-> EventManager
+IEventListener <|.. Observer2
+@enduml

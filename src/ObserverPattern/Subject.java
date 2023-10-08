@@ -4,7 +4,7 @@ enum Event {
     DIE,
     LIFE
 }
-public class Subject {
+public class Subject implements ISubject{
     public Event e;
 
     public Subject(Event event) {
